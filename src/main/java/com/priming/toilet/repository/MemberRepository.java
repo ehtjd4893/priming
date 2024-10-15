@@ -17,7 +17,7 @@ public interface MemberRepository extends JpaRepository<MemberEntity, Integer> {
   @Query(value = "SELECT new com.priming.toilet.entity.MemberEntity(m.memberId, m.memberName, m.dayOfCleaning) from MemberEntity m WHERE m.cleanUpMember = true and m.dayOfCleaning = (SELECT MIN(m2.dayOfCleaning) FROM MemberEntity m2)")
   List<MemberEntity> getNextToiletCleanUpMember();
 
-  @Query(value = "UPDATE member SET dayOfCleaning = CURRENT_TIMESTAMP() WHERE memberId = :memberId",  nativeQuery = true)
+  @Query(value = "UPDATE MEMBER SET dayOfCleaning = CURRENT_TIMESTAMP() WHERE memberId = :memberId",  nativeQuery = true)
   @Transactional
   @Modifying
   void saveCleanUpCompletionTime(@Param("memberId") long memberId);

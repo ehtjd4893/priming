@@ -29,6 +29,10 @@ public class MemberService {
   public List<MemberEntity> getNextToiletCleanUpMember() {
     List<MemberEntity> result = memberRepository.getNextToiletCleanUpMember();
 
+    if (result.isEmpty()) {
+      throw new RuntimeException("Can't find next clean-up order");
+    }
+
     return result;
   }
 
